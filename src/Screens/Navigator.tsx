@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
 // screen 가져오기
-import MainScreen from '~/Screens/MainScreen';
+import MainScreen from '~/Screens/MainScreen/Navigator';
 // import Loading from '~/Screens/LoadingScreen';
 import LoginScreen from '~/Screens/LoginScreen';
 import SignUpScreen from '~/Screens/SignUpScreen';
