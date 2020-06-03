@@ -1,9 +1,8 @@
-// Login.tsx
+// Login
 import React from 'react';
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
-import Reinput from 'reinput';
 
-function Login({navigation}) {
+function LoginScreen({navigation}) {
   return (
     <View style={styles.container}>
       <Text>Login</Text>
@@ -18,12 +17,14 @@ function Login({navigation}) {
         autoCapitalize="none"
         placeholder="Password"
       />
-      <Button title="로그인" onPress={() => navigation.navigate('Main')} />
+      <Button
+        title="로그인"
+        onPress={() => navigation.navigate('MainScreen')}
+      />
       <Button
         title="계정 없으면 가입하세요"
-        onPress={() => navigation.navigate('SignUp')}
+        onPress={() => navigation.navigate('SignUpScreen')}
       />
-      <Reinput label="name" />
     </View>
   );
 }
@@ -43,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default LoginScreen;

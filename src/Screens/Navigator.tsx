@@ -4,10 +4,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
 // screen 가져오기
-import Main from '~/Screens/Main';
-// import Loading from '~/Screens/Loading';
-import Login from '~/Screens/Login';
-import SignUp from '~/Screens/SignUp';
+import MainScreen from '~/Screens/MainScreen';
+// import Loading from '~/Screens/LoadingScreen';
+import LoginScreen from '~/Screens/LoginScreen';
+import SignUpScreen from '~/Screens/SignUpScreen';
 
 // stack 내비게이션 생성
 const Stack = createStackNavigator();
@@ -16,10 +16,18 @@ const Stack = createStackNavigator();
 const StartNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} options={{title: 'Login'}} />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{title: 'Login'}}
+      />
       {/* {isLoggedIn ? (
         <> */}
-      <Stack.Screen name="Main" component={Main} options={{title: 'Main'}} />
+      <Stack.Screen
+        name="MainScreen"
+        component={MainScreen}
+        options={{title: 'Main'}}
+      />
       {/* <Stack.Screen
             name="LoadingScreen"
             component={Loading}
@@ -33,8 +41,8 @@ const StartNavigator = () => {
           </>
       ) : ( */}
       <Stack.Screen
-        name="SignUp"
-        component={SignUp}
+        name="SignUpScreen"
+        component={SignUpScreen}
         options={{title: 'SignUp'}}
       />
       {/* )} */}

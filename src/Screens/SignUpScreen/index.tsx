@@ -2,7 +2,7 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
 
-function SignUp({navigation}) {
+function SignUpScreen({navigation}) {
   return (
     <View style={styles.container}>
       <Text>Sign Up</Text>
@@ -21,13 +21,10 @@ function SignUp({navigation}) {
         // onChangeText={password => this.setState({password})}
         // value={this.state.password}
       />
-      <Button
-        title="가입하기"
-        onPress={() => navigation.navigate('MainScreen')}
-      />
+      <Button title="가입하기" onPress={() => navigation.navigate('MainScreen')} />
       <Button
         title="계정이 있다면 로그인 ㄱ"
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate('LoginScreen')}
       />
     </View>
   );
@@ -48,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUp;
+export default SignUpScreen;
