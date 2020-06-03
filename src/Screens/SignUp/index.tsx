@@ -3,21 +3,6 @@ import React from 'react';
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
 
 function SignUp({navigation}) {
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    textInput: {
-      height: 40,
-      width: '90%',
-      borderColor: 'gray',
-      borderWidth: 1,
-      marginTop: 8,
-    },
-  });
-
   return (
     <View style={styles.container}>
       <Text>Sign Up</Text>
@@ -44,5 +29,20 @@ function SignUp({navigation}) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textInput: {
+    height: 40,
+    width: '90%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginTop: 8,
+  },
+});
 
 export default SignUp;
