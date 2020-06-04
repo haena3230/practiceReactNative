@@ -2,18 +2,30 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-// screen 가져오기
-import MainScreen from '~/Screens/MainScreen/Navigator';
+// 1st screen (Login)
+import MainScreen from '~/Screens/MainScreen';
 // import Loading from '~/Screens/LoadingScreen';
 import LoginScreen from '~/Screens/LoginScreen';
 import SignUpScreen from '~/Screens/SignUpScreen';
 
-// stack 내비게이션 생성
+// 2nd screen (Main)
+import SearchScreen from '~/Screens/MainScreen/SearchScreen';
+import RecordScreen from '~/Screens/MainScreen/RecordScreen';
+import EventScreen from '~/Screens/MainScreen/EventScreen';
+import PersonalScreen from '~/Screens/MainScreen/PersonalScreen';
+
+// stack navigation
 const Stack = createStackNavigator();
 
-// 작성한 screen들로 구성 채우기
-const StartNavigator = () => {
+// BottomTab navigation
+const BottomTab = createBottomTabNavigator();
+
+import {Button} from 'react-native';
+
+// 1st screen Navigation(Login)
+function LoginNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -21,39 +33,48 @@ const StartNavigator = () => {
         component={LoginScreen}
         options={{title: 'Login'}}
       />
-      {/* {isLoggedIn ? (
-        <> */}
       <Stack.Screen
-        name="MainScreen"
-        component={MainScreen}
-        options={{title: 'Main'}}
+        name="MainNavigator"
+        component={MainNavigator}
+        options={{
+          headerTitle: 'test',
+          headerRight: () => (
+            <Button
+              // eslint-disable-next-line no-alert
+              onPress={() => alert('This is a button!')}
+              title="fdfsdffg"
+              color="#fff"
+            />
+          ),
+        }}
       />
-      {/* <Stack.Screen
-            name="LoadingScreen"
-            component={Loading}
-            options={{title: 'Loading'}}
-          />
-      <Stack.Screen
-        name="LoginScreen"
-        component={Login}
-        options={{title: 'Login'}}
-      />
-          </>
-      ) : ( */}
       <Stack.Screen
         name="SignUpScreen"
         component={SignUpScreen}
         options={{title: 'SignUp'}}
       />
-      {/* )} */}
     </Stack.Navigator>
   );
 };
+
+// 2nd screen Navigation(Main)
+const MainNavigator = () => {
+  return (
+    <BottomTab.Navigator>
+      <BottomTab.Screen name="MainScreen" component={MainScreen} />
+      <BottomTab.Screen name="SearchScreen" component={SearchScreen} />
+      <BottomTab.Screen name="RecordScreen" component={RecordScreen} />
+      <BottomTab.Screen name="EventScreen" component={EventScreen} />
+      <BottomTab.Screen name="PersonalScreen" component={PersonalScreen} />
+    </BottomTab.Navigator>
+  );
+};
+
 // 내보내기
 export default () => {
   return (
     <NavigationContainer>
-      <StartNavigator />
+      <LoginNavigator />
     </NavigationContainer>
   );
 };

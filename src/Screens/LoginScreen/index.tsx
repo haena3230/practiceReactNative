@@ -46,7 +46,7 @@ function LoginScreen({navigation}) {
           <TouchableOpacity
             style={styles.button}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate('MainScreen')}>
+            onPress={() => navigation.navigate('MainNavigator')}>
             <Text style={styles.buttontext}>로그인</Text>
           </TouchableOpacity>
           <TouchableOpacity

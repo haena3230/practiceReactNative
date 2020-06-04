@@ -1,4 +1,4 @@
-// SearchScreen 기본 메인메뉴
+// SearchScreen
 import React from 'react';
 import {Text, View} from 'react-native';
 
