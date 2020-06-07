@@ -4,9 +4,12 @@ import {Text, View, TouchableOpacity, StyleSheet} from 'react-native'
 
 import {createDrawerNavigator} from '@react-navigation/drawer'
 
-//3rd screen (Drawer in main)
+// For Drawer in main
 import SettingPage from '~/Screens/SettingPage'
 import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
+
+// LogOutComponents
+import LogOut from '~/Components/LogOut'
 
 function MainScreen({navigation}) {
   return (
@@ -16,7 +19,16 @@ function MainScreen({navigation}) {
         style={styles.buttonjoin}
         activeOpacity={0.8}
         onPress={() => navigation.openDrawer()}>
-        <Text style={styles.buttontextjoin}>Drawer</Text>
+        <Text style={styles.buttontextjoin}>Drawer(메뉴나옴)</Text>
+      </TouchableOpacity>
+      {/* 로그아웃버튼 */}
+      <TouchableOpacity
+        style={styles.buttonjoin}
+        activeOpacity={0.8}
+        onPress={() => LogOut()}>
+        <Text style={styles.buttontextjoin}>
+          LogOut(로그인 안되어있는 상태에서 누르면 에러남)
+        </Text>
       </TouchableOpacity>
     </View>
   )

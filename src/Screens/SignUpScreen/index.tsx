@@ -1,5 +1,5 @@
-// SignUp Screen
-import React from 'react'
+// // SignUp Screen
+import React, {useState} from 'react'
 import Reinput from 'reinput'
 import {
   StyleSheet,
@@ -8,11 +8,49 @@ import {
   View,
   Image,
   ScrollView,
+  Alert,
+  ActivityIndicator,
 } from 'react-native'
+// FB
+import auth from '@react-native-firebase/auth'
 
 function SignUpScreen({navigation}) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [fetching, setFetching] = useState(false)
+  const [error, setError] = useState('')
+  const [isValid, setValid] = useState(true)
+
+  const __doSignUp = () => {
+    if (!email) {
+      setError('Email required *')
+      setValid(false)
+      return
+    } else if (!password && password.trim() && password.length > 6) {
+      setError('Weak password, minimum 5 chars')
+      setValid(false)
+      return
+    }
+    __doCreateUser(email, password)
+  }
+
+  const __doCreateUser = async (email: string, password: string) => {
+    try {
+      let response = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      )
+      if (response && response.user) {
+        Alert.alert('Success ✅', '성공적으로 회원가입')
+      }
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
+
   return (
     <ScrollView style={styles.container}>
+      <View style={{flex: 0.2}}>{!!fetching && <ActivityIndicator />}</View>
       <View style={styles.view}>
         <Image
           style={styles.image}
@@ -24,6 +62,10 @@ function SignUpScreen({navigation}) {
           labelActiveColor="#999999"
           underlineActiveColor="#999999"
           label="Email"
+          onChangeText={(text: React.SetStateAction<string>) => {
+            setError
+            setEmail(text)
+          }}
         />
       </View>
       <View style={styles.view}>
@@ -38,6 +80,9 @@ function SignUpScreen({navigation}) {
           underlineColor="#b1b2b2"
           labelActiveColor="#999999"
           underlineActiveColor="#999999"
+          onChangeText={(text: React.SetStateAction<string>) =>
+            setPassword(text)
+          }
         />
       </View>
       <View style={styles.view}>
@@ -67,11 +112,16 @@ function SignUpScreen({navigation}) {
           underlineActiveColor="#999999"
         />
       </View>
+      {error ? (
+        <View>
+          <Text>{error}</Text>
+        </View>
+      ) : null}
       <View style={styles.buttonview}>
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.8}
-          onPress={() => navigation.navigate('MainScreen')}>
+          onPress={() => __doSignUp()}>
           <Text style={styles.buttontext}>가입하기</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -136,4 +186,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 })
+
 export default SignUpScreen

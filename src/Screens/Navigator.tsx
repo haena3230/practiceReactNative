@@ -1,9 +1,8 @@
 //Navigator.tsx
-import * as React from 'react'
+import React, {useState, useEffect} from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {createDrawerNavigator} from '@react-navigation/drawer'
 
 // 1st screen (Login)
 import MainScreen from '~/Screens/MainScreen'
@@ -17,10 +16,6 @@ import RecordScreen from '~/Screens/MainScreen/RecordScreen'
 import EventScreen from '~/Screens/MainScreen/EventScreen'
 import PersonalScreen from '~/Screens/MainScreen/PersonalScreen'
 
-//3rd screen (Drawer in main)
-import SettingPage from '~/Screens/SettingPage'
-import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
-
 //style
 import {Button, Image} from 'react-native'
 
@@ -29,9 +24,6 @@ const Stack = createStackNavigator()
 
 // BottomTab navigation
 const BottomTab = createBottomTabNavigator()
-
-// Drawer navigation
-const Drawer = createDrawerNavigator()
 
 // 1st screen Navigation(Login)
 const LoginNavigator = () => {
@@ -119,19 +111,41 @@ function MainNavigator() {
   )
 }
 
-function SettingNavigator() {
-  ;<Drawer.Navigator initialRouteName="MainNavigator">
-    <Drawer.Screen name="MainNavigator" component={MainNavigator} />
-    <Drawer.Screen name="Setting" component={SettingPage} />
-    // <Drawer.Screen name="Profile" component={ProfileScreen} />
-  </Drawer.Navigator>
-}
+// 로그인
+import auth from '@react-native-firebase/auth'
 
-// 내보내기
-export default () => {
+function FirstNavigator() {
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true)
+  const [user, setUser] = useState()
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user)
+    if (initializing) setInitializing(false)
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
+    return subscriber // unsubscribe on unmount
+  }, [])
+
+  if (initializing) return null
+
+  if (!user) {
+    return (
+      <NavigationContainer>
+        <LoginNavigator />
+      </NavigationContainer>
+    )
+  }
+
   return (
     <NavigationContainer>
-      <LoginNavigator />
+      <MainNavigator />
     </NavigationContainer>
   )
 }
+
+// 내보내기
+export default FirstNavigator

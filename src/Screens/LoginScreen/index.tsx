@@ -11,12 +11,9 @@ import {
   Image,
 } from 'react-native'
 
+import Login from '~/Components/Login'
+
 function LoginScreen({navigation}) {
-  //state = {email: '', password: '', errorMessage: null};
-  // handleLogin = () => {
-  //   // TODO: Firebase stuff...
-  //   console.log('handleLogin');
-  // };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -30,8 +27,6 @@ function LoginScreen({navigation}) {
             labelActiveColor="#999999"
             underlineActiveColor="#999999"
             label="Email"
-            // onChangeText={email => this.setState({email})}
-            // value={this.state.email}
           />
           <Reinput
             style={styles.inputemail}
@@ -40,13 +35,11 @@ function LoginScreen({navigation}) {
             labelActiveColor="#999999"
             underlineActiveColor="#999999"
             label="Password"
-            //onChangeText={password => this.setState({password})}
-            // value={this.state.password}
           />
           <TouchableOpacity
             style={styles.button}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate('MainNavigator')}>
+            onPress={() => Login()}>
             <Text style={styles.buttontext}>로그인</Text>
           </TouchableOpacity>
           <TouchableOpacity
