@@ -1,32 +1,40 @@
 //Navigator.tsx
-import * as React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as React from 'react'
+import {createStackNavigator} from '@react-navigation/stack'
+import {NavigationContainer} from '@react-navigation/native'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {createDrawerNavigator} from '@react-navigation/drawer'
 
 // 1st screen (Login)
-import MainScreen from '~/Screens/MainScreen';
+import MainScreen from '~/Screens/MainScreen'
 // import Loading from '~/Screens/LoadingScreen';
-import LoginScreen from '~/Screens/LoginScreen';
-import SignUpScreen from '~/Screens/SignUpScreen';
+import LoginScreen from '~/Screens/LoginScreen'
+import SignUpScreen from '~/Screens/SignUpScreen'
 
 // 2nd screen (Main)
-import SearchScreen from '~/Screens/MainScreen/SearchScreen';
-import RecordScreen from '~/Screens/MainScreen/RecordScreen';
-import EventScreen from '~/Screens/MainScreen/EventScreen';
-import PersonalScreen from '~/Screens/MainScreen/PersonalScreen';
+import SearchScreen from '~/Screens/MainScreen/SearchScreen'
+import RecordScreen from '~/Screens/MainScreen/RecordScreen'
+import EventScreen from '~/Screens/MainScreen/EventScreen'
+import PersonalScreen from '~/Screens/MainScreen/PersonalScreen'
+
+//3rd screen (Drawer in main)
+import SettingPage from '~/Screens/SettingPage'
+import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
 
 //style
-import {Button, Image} from 'react-native';
+import {Button, Image} from 'react-native'
 
 // stack navigation
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 // BottomTab navigation
-const BottomTab = createBottomTabNavigator();
+const BottomTab = createBottomTabNavigator()
+
+// Drawer navigation
+const Drawer = createDrawerNavigator()
 
 // 1st screen Navigation(Login)
-function LoginNavigator() {
+const LoginNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -55,11 +63,11 @@ function LoginNavigator() {
         options={{title: 'SignUp'}}
       />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
 // 2nd screen Navigation(Main)
-const MainNavigator = () => {
+function MainNavigator() {
   return (
     <BottomTab.Navigator>
       <BottomTab.Screen
@@ -108,8 +116,16 @@ const MainNavigator = () => {
         component={PersonalScreen}
       />
     </BottomTab.Navigator>
-  );
-};
+  )
+}
+
+function SettingNavigator() {
+  ;<Drawer.Navigator initialRouteName="MainNavigator">
+    <Drawer.Screen name="MainNavigator" component={MainNavigator} />
+    <Drawer.Screen name="Setting" component={SettingPage} />
+    // <Drawer.Screen name="Profile" component={ProfileScreen} />
+  </Drawer.Navigator>
+}
 
 // 내보내기
 export default () => {
@@ -117,5 +133,5 @@ export default () => {
     <NavigationContainer>
       <LoginNavigator />
     </NavigationContainer>
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
 // Login.tsx
-import React from 'react';
-import Reinput from 'reinput';
+import React from 'react'
+import Reinput from 'reinput'
 //reinput 모듈 다운
 import {
   ScrollView,
@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
   Image,
-} from 'react-native';
+} from 'react-native'
 
 function LoginScreen({navigation}) {
   //state = {email: '', password: '', errorMessage: null};
@@ -58,7 +58,7 @@ function LoginScreen({navigation}) {
         </View>
       </View>
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -121,6 +121,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 50, //임시
   },
-});
+})
 
-export default LoginScreen;
+export default LoginScreen

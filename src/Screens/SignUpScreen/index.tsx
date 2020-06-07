@@ -1,6 +1,6 @@
 // SignUp Screen
-import React from 'react';
-import Reinput from 'reinput';
+import React from 'react'
+import Reinput from 'reinput'
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,7 @@ import {
   View,
   Image,
   ScrollView,
-} from 'react-native';
+} from 'react-native'
 
 function SignUpScreen({navigation}) {
   return (
@@ -84,7 +84,7 @@ function SignUpScreen({navigation}) {
         </TouchableOpacity>
       </View>
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -135,5 +135,5 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 13,
   },
-});
-export default SignUpScreen;
+})
+export default SignUpScreen
