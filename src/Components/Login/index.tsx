@@ -3,8 +3,6 @@ import auth from '@react-native-firebase/auth'
 import {useState} from 'react'
 import {Alert} from 'react-native'
 
-// import
-
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

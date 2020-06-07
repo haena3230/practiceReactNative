@@ -14,6 +14,7 @@ import LogOut from '~/Components/LogOut'
 function MainScreen({navigation}) {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      {/* 메인에 나오는 상단바 로그인 기능 적용되면 안나타남 */}
       <Text>메인 기본 팔로우 리스트</Text>
       <TouchableOpacity
         style={styles.buttonjoin}

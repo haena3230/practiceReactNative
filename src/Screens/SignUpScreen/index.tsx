@@ -15,12 +15,13 @@ import {
 import auth from '@react-native-firebase/auth'
 
 function SignUpScreen({navigation}) {
+  //FB
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fetching, setFetching] = useState(false)
   const [error, setError] = useState('')
   const [isValid, setValid] = useState(true)
-
+  //FB
   const __doSignUp = () => {
     if (!email) {
       setError('Email required *')
@@ -33,7 +34,7 @@ function SignUpScreen({navigation}) {
     }
     __doCreateUser(email, password)
   }
-
+  //FB
   const __doCreateUser = async (email: string, password: string) => {
     try {
       let response = await auth().createUserWithEmailAndPassword(
@@ -62,6 +63,7 @@ function SignUpScreen({navigation}) {
           labelActiveColor="#999999"
           underlineActiveColor="#999999"
           label="Email"
+          //FB
           onChangeText={(text: React.SetStateAction<string>) => {
             setError
             setEmail(text)
@@ -80,6 +82,7 @@ function SignUpScreen({navigation}) {
           underlineColor="#b1b2b2"
           labelActiveColor="#999999"
           underlineActiveColor="#999999"
+          //FB
           onChangeText={(text: React.SetStateAction<string>) =>
             setPassword(text)
           }
@@ -121,7 +124,9 @@ function SignUpScreen({navigation}) {
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.8}
-          onPress={() => __doSignUp()}>
+          //FB
+          // onPress={() => __doSignUp()}>
+          onPress={() => navigation.navigate('SignUpScreen')}>
           <Text style={styles.buttontext}>가입하기</Text>
         </TouchableOpacity>
         <TouchableOpacity
