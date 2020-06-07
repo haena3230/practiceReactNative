@@ -21,7 +21,7 @@ function LoginScreen({navigation}) {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.imageview}>
-          <Image source={require('~/Assets/login_nyang@mdpi.png')} />
+          <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
         </View>
         <View style={styles.formcontainer}>
           <Reinput

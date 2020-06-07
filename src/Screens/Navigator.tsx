@@ -16,13 +16,14 @@ import RecordScreen from '~/Screens/MainScreen/RecordScreen';
 import EventScreen from '~/Screens/MainScreen/EventScreen';
 import PersonalScreen from '~/Screens/MainScreen/PersonalScreen';
 
+//style
+import {Button, Image} from 'react-native';
+
 // stack navigation
 const Stack = createStackNavigator();
 
 // BottomTab navigation
 const BottomTab = createBottomTabNavigator();
-
-import {Button} from 'react-native';
 
 // 1st screen Navigation(Login)
 function LoginNavigator() {
@@ -61,11 +62,51 @@ function LoginNavigator() {
 const MainNavigator = () => {
   return (
     <BottomTab.Navigator>
-      <BottomTab.Screen name="MainScreen" component={MainScreen} />
-      <BottomTab.Screen name="SearchScreen" component={SearchScreen} />
-      <BottomTab.Screen name="RecordScreen" component={RecordScreen} />
-      <BottomTab.Screen name="EventScreen" component={EventScreen} />
-      <BottomTab.Screen name="PersonalScreen" component={PersonalScreen} />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: () => (
+            <Image source={require('~/Assets/mdpi/main_buttonmdpi.png')} />
+          ),
+        }}
+        name="MainScreen"
+        component={MainScreen}
+      />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: () => (
+            <Image source={require('~/Assets/mdpi/search_buttonmdpi.png')} />
+          ),
+        }}
+        name="SearchScreen"
+        component={SearchScreen}
+      />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: () => (
+            <Image source={require('~/Assets/mdpi/dairy_buttonmdpi.png')} />
+          ),
+        }}
+        name="RecordScreen"
+        component={RecordScreen}
+      />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: () => (
+            <Image source={require('~/Assets/mdpi/event_buttonmdpi.png')} />
+          ),
+        }}
+        name="EventScreen"
+        component={EventScreen}
+      />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: () => (
+            <Image source={require('~/Assets/mdpi/personal_buttonmdpi.png')} />
+          ),
+        }}
+        name="PersonalScreen"
+        component={PersonalScreen}
+      />
     </BottomTab.Navigator>
   );
 };
