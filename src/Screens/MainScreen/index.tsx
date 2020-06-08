@@ -9,7 +9,7 @@ import SettingPage from '~/Screens/SettingPage'
 import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
 
 // LogOutComponents
-import LogOut from '~/Components/LogOut'
+// import LogOut from '~/Components/LogOut'
 
 function MainScreen({navigation}) {
   return (
@@ -26,7 +26,8 @@ function MainScreen({navigation}) {
       <TouchableOpacity
         style={styles.buttonjoin}
         activeOpacity={0.8}
-        onPress={() => LogOut()}>
+        onPress={() => navigation.native('LoginScreen')}>
+        {/* // onPress={() => LogOut()}> */}
         <Text style={styles.buttontextjoin}>
           LogOut(로그인 안되어있는 상태에서 누르면 에러남)
         </Text>

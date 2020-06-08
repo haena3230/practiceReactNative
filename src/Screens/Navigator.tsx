@@ -1,5 +1,6 @@
 //Navigator.tsx
-import React, {useState, useEffect} from 'react'
+// import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
@@ -16,8 +17,12 @@ import RecordScreen from '~/Screens/MainScreen/RecordScreen'
 import EventScreen from '~/Screens/MainScreen/EventScreen'
 import PersonalScreen from '~/Screens/MainScreen/PersonalScreen'
 
+//3rd screen 은 mainscreen에 있음
+
+//4th Screen (Record)
+
 //style
-import {Button, Image} from 'react-native'
+import {Button, Image, Alert} from 'react-native'
 
 // stack navigation
 const Stack = createStackNavigator()
@@ -42,7 +47,7 @@ const LoginNavigator = () => {
           headerRight: () => (
             <Button
               // eslint-disable-next-line no-alert
-              onPress={() => alert('This is a button!')}
+              onPress={() => Alert.alert('This is a button!')}
               title="fdfsdffg"
               color="#fff"
             />
@@ -111,41 +116,49 @@ function MainNavigator() {
   )
 }
 
-// 로그인
-import auth from '@react-native-firebase/auth'
-
-function FirstNavigator() {
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true)
-  const [user, setUser] = useState()
-
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user)
-    if (initializing) setInitializing(false)
-  }
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
-    return subscriber // unsubscribe on unmount
-  }, [])
-
-  if (initializing) return null
-
-  if (!user) {
-    return (
-      <NavigationContainer>
-        <LoginNavigator />
-      </NavigationContainer>
-    )
-  }
-
+export default () => {
   return (
     <NavigationContainer>
-      <MainNavigator />
+      <LoginNavigator />
     </NavigationContainer>
   )
 }
 
-// 내보내기
-export default FirstNavigator
+// // 로그인
+// import auth from '@react-native-firebase/auth'
+
+// function FirstNavigator() {
+//   // Set an initializing state whilst Firebase connects
+//   const [initializing, setInitializing] = useState(true)
+//   const [user, setUser] = useState()
+
+//   // Handle user state changes
+//   function onAuthStateChanged(user) {
+//     setUser(user)
+//     if (initializing) setInitializing(false)
+//   }
+
+//   useEffect(() => {
+//     const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
+//     return subscriber // unsubscribe on unmount
+//   }, [])
+
+//   if (initializing) return null
+
+//   if (!user) {
+//     return (
+//       <NavigationContainer>
+//         <LoginNavigator />
+//       </NavigationContainer>
+//     )
+//   }
+
+//   return (
+//     <NavigationContainer>
+//       <MainNavigator />
+//     </NavigationContainer>
+//   )
+// }
+
+// // 내보내기
+// export default FirstNavigator
