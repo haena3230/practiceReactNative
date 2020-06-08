@@ -39,15 +39,7 @@ const LoginNavigator = () => {
         name="MainNavigator"
         component={MainNavigator}
         options={{
-          headerTitle: 'test',
-          headerRight: () => (
-            <Button
-              // eslint-disable-next-line no-alert
-              onPress={() => Alert.alert('This is a button!')}
-              title="fdfsdffg"
-              color="#fff"
-            />
-          ),
+          headerShown: false,
         }}
       />
       <Stack.Screen
