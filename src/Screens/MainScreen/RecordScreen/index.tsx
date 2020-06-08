@@ -8,11 +8,7 @@ function RecordScreen({navigation}) {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.Button1}
-          onPress={() =>
-            navigation.navigate(
-              '~/Screens/MainScreen/RecordScreen/RecordScreen2',
-            )
-          }>
+          onPress={() => navigation.navigate('RecordScreen2')}>
           <Image
             style={{height: '60%', width: '60%', resizeMode: 'contain'}}
             source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
@@ -20,11 +16,7 @@ function RecordScreen({navigation}) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.Button2}
-          onPress={() =>
-            navigation.navigate(
-              '~/Screens/MainScreen/RecordScreen/RecordScreen2',
-            )
-          }>
+          onPress={() => navigation.navigate('RecordScreen2')}>
           <Image
             style={{height: '60%', width: '60%', resizeMode: 'contain'}}
             source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
@@ -34,11 +26,7 @@ function RecordScreen({navigation}) {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.Button3}
-          onPress={() =>
-            navigation.navigate(
-              '~/Screens/MainScreen/RecordScreen/RecordScreen2',
-            )
-          }>
+          onPress={() => navigation.navigate('RecordScreen3')}>
           <Image
             style={{height: '60%', width: '60%', resizeMode: 'contain'}}
             source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
@@ -47,11 +35,7 @@ function RecordScreen({navigation}) {
 
         <TouchableOpacity
           style={styles.Button4}
-          onPress={() =>
-            navigation.navigate(
-              '~/Screens/MainScreen/RecordScreen/RecordScreen2',
-            )
-          }>
+          onPress={() => navigation.navigate('RecordScreen2')}>
           <Image
             style={{height: '60%', width: '60%', resizeMode: 'contain'}}
             source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
@@ -61,11 +45,7 @@ function RecordScreen({navigation}) {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.Button5}
-          onPress={() =>
-            navigation.navigate(
-              '~/Screens/MainScreen/RecordScreen/RecordScreen2',
-            )
-          }>
+          onPress={() => navigation.navigate('RecordScreen2')}>
           <Image
             style={{height: '60%', width: '60%', resizeMode: 'contain'}}
             source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
@@ -73,11 +53,7 @@ function RecordScreen({navigation}) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.Button6}
-          onPress={() =>
-            navigation.navigate(
-              '~/Screens/MainScreen/RecordScreen/RecordScreen2',
-            )
-          }>
+          onPress={() => navigation.navigate('RecordScreen2')}>
           <Image
             style={{height: '60%', width: '60%', resizeMode: 'contain'}}
             source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
