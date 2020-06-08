@@ -1,5 +1,5 @@
 // MainMenu (FollowList)
-// 데이터 가져와야함
+// 데이터 연결 해야해 초석은 다져둬씀
 import React, {useState} from 'react'
 import {
   Text,
@@ -10,6 +10,7 @@ import {
   ScrollView,
   TouchableHighlight,
 } from 'react-native'
+// 뭔가 직관적이고 괜찮은것같아서 가져와봤어 더 헷갈렸다면 미안
 import {
   Icon,
   Container,
@@ -21,24 +22,18 @@ import {
   Button,
 } from 'native-base'
 
-import {createDrawerNavigator} from '@react-navigation/drawer'
-
-// For Drawer in main
-import SettingPage from '~/Screens/SettingPage'
-import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
-import LogOut from '~/Components/LogOut'
-
 // LogOutComponents
 // import LogOut from '~/Components/LogOut'
 
 function MainScreen({navigation}) {
+  // for link data -->
   const [name, setName] = useState('')
   const [reputation, setReputation] = useState(0)
   const [profile, setProfile] = useState({})
   const [postCount, setPostCount] = useState(0)
   const [followingCount, setFollowingCount] = useState(0)
   const [followerCount, setFollowerCount] = useState(0)
-
+  // 계정정보
   const fetchAccount = (username: string) => {
     const data = {
       id: 3,
@@ -53,7 +48,7 @@ function MainScreen({navigation}) {
       .then(res => res.json())
       .then(res => res.result[0])
   }
-
+  // 팔로우정보
   const fetchFollowCount = (username: string) => {
     const data = {
       id: 4,
@@ -68,7 +63,7 @@ function MainScreen({navigation}) {
       .then(res => res.json())
       .then(res => res.result)
   }
-
+  // 연결
   const componentWillMount = () => {
     const username = 'anpigon'
 
@@ -87,7 +82,6 @@ function MainScreen({navigation}) {
         })
       },
     )
-
     fetchFollowCount(username).then(({following_count, follower_count}) => {
       useState({
         followingCount: following_count,
@@ -95,6 +89,7 @@ function MainScreen({navigation}) {
       })
     })
   }
+  // <--
   return (
     <Container style={{flex: 1, backgroundColor: 'white'}}>
       <Header>
@@ -117,6 +112,7 @@ function MainScreen({navigation}) {
             />
           </View>
           <View style={{flex: 3}}>
+            {/* 가로로 post follower following 수 보여줌 */}
             <View
               style={{
                 flexDirection: 'row',
@@ -135,6 +131,7 @@ function MainScreen({navigation}) {
                 <Text style={{fontSize: 10, color: 'gray'}}>following</Text>
               </View>
             </View>
+            {/* 얘는 가로로 버튼들 아직안정함 */}
             <View style={{flexDirection: 'row'}}>
               <Button
                 bordered
@@ -166,6 +163,7 @@ function MainScreen({navigation}) {
             </View>
           </View>
         </View>
+        {/* 가져온 정보로 계정 주인에 대한 정보 표시 */}
         <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
           <Text style={{fontWeight: 'bold'}}>
             {profile.name} ({reputation.toFixed(2)})
@@ -173,6 +171,7 @@ function MainScreen({navigation}) {
           <Text>{profile.about}</Text>
           <Text>{profile.website}</Text>
         </View>
+        {/* 여기부터 좌우 스크롤 */}
         <ScrollView horizontal={true} style={styles.list}>
           <View style={styles.stylegridView}>
             <TouchableHighlight underlayColor="rgba(0,0,0,0)">
@@ -192,6 +191,7 @@ function MainScreen({navigation}) {
             </TouchableHighlight>
           </View>
         </ScrollView>
+        {/* 여기부터 드로워메뉴 */}
         <TouchableOpacity
           style={styles.buttonjoin}
           activeOpacity={0.8}
@@ -230,11 +230,13 @@ const styles = StyleSheet.create({
     marginTop: 50, //임시
   },
   list: {
+    // 사진 리스트
     flex: 1,
     width: '100%',
     backgroundColor: '#f2f2f2',
   },
   stylegridView: {
+    // 사진 리스트
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingHorizontal: 16,
@@ -244,10 +246,18 @@ const styles = StyleSheet.create({
   },
 })
 
+// add navigation
+import {createDrawerNavigator} from '@react-navigation/drawer'
+
 // Drawer navigation
 const Drawer = createDrawerNavigator()
 
-// 내보내기
+// For Drawer in main
+import SettingPage from '~/Screens/SettingPage'
+import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
+import LogOut from '~/Components/LogOut'
+
+// export
 export default () => {
   return (
     <Drawer.Navigator initialRouteName="MainScreen">
