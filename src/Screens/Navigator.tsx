@@ -5,21 +5,17 @@ import {createStackNavigator} from '@react-navigation/stack'
 import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 
-// 1st screen (Login)
+// (Login)
 import MainScreen from '~/Screens/MainScreen'
 // import Loading from '~/Screens/LoadingScreen';
 import LoginScreen from '~/Screens/LoginScreen'
 import SignUpScreen from '~/Screens/SignUpScreen'
 
-// 2nd screen (Main)
+// (Main)
 import SearchScreen from '~/Screens/MainScreen/SearchScreen'
 import RecordScreen from '~/Screens/MainScreen/RecordScreen'
 import EventScreen from '~/Screens/MainScreen/EventScreen'
 import PersonalScreen from '~/Screens/MainScreen/PersonalScreen'
-
-//3rd screen 은 mainscreen에 있음
-
-//4th Screen (Record)
 
 //style
 import {Button, Image, Alert} from 'react-native'

@@ -133,12 +133,20 @@ import RecordScreen3 from '~/Screens/MainScreen/RecordScreen/RecordScreen3'
 import {createStackNavigator} from '@react-navigation/stack'
 const Stack = createStackNavigator()
 
-export default () => {
+function Record6Navigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="RecordScreen" component={RecordScreen} />
       <Stack.Screen name="RecordScreen2" component={RecordScreen2} />
       <Stack.Screen name="RecordScreen3" component={RecordScreen3} />
+    </Stack.Navigator>
+  )
+}
+// 내보내기
+export default () => {
+  return (
+    <Stack.Navigator initialRouteName="RecordScreen">
+      <Stack.Screen name="RecordScreen" component={RecordScreen} />
+      <Stack.Screen name="Record6Navigator" component={Record6Navigator} />
     </Stack.Navigator>
   )
 }

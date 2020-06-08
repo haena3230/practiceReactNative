@@ -4,7 +4,7 @@ import {StyleSheet, Text, View, TextInput} from 'react-native'
 import CatButton from '~/Components/CatButton' //이거는 피커로 만든건디 데이터를 어찌가지고올지 생각해봐야할듯
 import SaveButton from '~/Components/SaveButton' //이건 저장기능 추가하는거 알아볼게...
 
-export default function CatTextInput() {
+export default function RecordScreen2() {
   const [value, onChangeText] = React.useState('글을 입력하세요')
   return (
     <View style={styles.container}>
