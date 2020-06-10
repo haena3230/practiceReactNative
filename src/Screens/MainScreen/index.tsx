@@ -41,6 +41,7 @@ function MainScreen({navigation}) {
       method: 'call',
       params: ['database_api', 'get_accounts', [[username]]],
     }
+    // 패치해오는건 데이터 준비 되면 연결할거야
     return fetch('https://api.steemit.com', {
       method: 'POST',
       body: JSON.stringify(data),

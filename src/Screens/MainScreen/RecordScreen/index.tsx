@@ -1,65 +1,37 @@
 // RecordScreen
 import React from 'react'
-import {StyleSheet, View, Image, TouchableOpacity} from 'react-native'
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
 
 function RecordScreen({navigation}) {
   return (
-    <View style={{flex: 1}}>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.Button1}
-          onPress={() => navigation.navigate('RecordScreen2')}>
-          <Image
-            style={{height: '60%', width: '60%', resizeMode: 'contain'}}
-            source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Button2}
-          onPress={() => navigation.navigate('RecordScreen2')}>
-          <Image
-            style={{height: '60%', width: '60%', resizeMode: 'contain'}}
-            source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.Button3}
-          onPress={() => navigation.navigate('RecordScreen3')}>
-          <Image
-            style={{height: '60%', width: '60%', resizeMode: 'contain'}}
-            source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.Button4}
-          onPress={() => navigation.navigate('RecordScreen2')}>
-          <Image
-            style={{height: '60%', width: '60%', resizeMode: 'contain'}}
-            source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.Button5}
-          onPress={() => navigation.navigate('RecordScreen2')}>
-          <Image
-            style={{height: '60%', width: '60%', resizeMode: 'contain'}}
-            source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Button6}
-          onPress={() => navigation.navigate('RecordScreen2')}>
-          <Image
-            style={{height: '60%', width: '60%', resizeMode: 'contain'}}
-            source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
-          />
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('RecordScreen2')}>
+        <Image
+          style={styles.menuimage}
+          source={require('~/Assets/mdpi/feed_buttonmdpi.png')}
+        />
+        <Text style={styles.text}>밥 시간 기록하기</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('RecordScreen2')}>
+        <Image
+          style={styles.menuimage}
+          source={require('~/Assets/mdpi/medical_buttonmdpi.png')}
+        />
+        <Text style={styles.text}>병원 기록하기</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('RecordScreen3')}>
+        <Image
+          style={styles.menuimage}
+          source={require('~/Assets/mdpi/camera_buttonmdpi.png')}
+        />
+        <Text style={styles.text}>사진 올리기</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -67,38 +39,23 @@ function RecordScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    justifyContent: 'center',
     backgroundColor: 'white',
   },
-  Button1: {
-    width: '50%',
+  button: {
     flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.3,
+    borderColor: '#b1b2b2',
   },
-  Button2: {
-    width: '50%',
-    flex: 1,
-    backgroundColor: 'gray',
+  menuimage: {
+    resizeMode: 'contain',
   },
-  Button3: {
-    width: '50%',
-    flex: 1,
-    backgroundColor: 'gray',
-  },
-  Button4: {
-    width: '50%',
-    flex: 1,
-    backgroundColor: 'gray',
-  },
-  Button5: {
-    width: '50%',
-    flex: 1,
-    backgroundColor: 'gray',
-  },
-  Button6: {
-    width: '50%',
-    flex: 1,
-    backgroundColor: 'gray',
+  text: {
+    margin: 10,
+    color: 'black',
   },
 })
 

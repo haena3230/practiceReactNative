@@ -1,6 +1,6 @@
 //Navigator.tsx
-// import React, {useState, useEffect} from 'react'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+// import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
@@ -112,7 +112,7 @@ export default () => {
   )
 }
 
-// // 로그인
+// // // 로그인
 // import auth from '@react-native-firebase/auth'
 
 // function FirstNavigator() {

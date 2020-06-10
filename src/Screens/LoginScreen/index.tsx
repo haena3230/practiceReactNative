@@ -10,6 +10,7 @@ import {
   View,
   Image,
 } from 'react-native'
+import Login from '~/Components/Login'
 
 function LoginScreen({navigation}) {
   return (
@@ -39,7 +40,7 @@ function LoginScreen({navigation}) {
             activeOpacity={0.8}
             onPress={() => navigation.navigate('MainNavigator')}>
             {/* FB */}
-            {/* onPress={() => Login()} */}
+            {/* onPress={() => Login()}> */}
             <Text style={styles.buttontext}>로그인</Text>
           </TouchableOpacity>
           <TouchableOpacity
