@@ -1,38 +1,17 @@
 // MainMenu (FollowList)
-// 데이터 연결 해야해 초석은 다져둬씀
+// 데이터 연결 해야해
+// 지금은 사용자 이름, 프로필 정보 가져오는거는 초석 다져뒀고
+// 기록 데이터는 아직 안함 ㅜ
 import React, {useState} from 'react'
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableHighlight,
-} from 'react-native'
-// 뭔가 직관적이고 괜찮은것같아서 가져와봤어 더 헷갈렸다면 미안
-import {
-  Icon,
-  Container,
-  Content,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-} from 'native-base'
+import {Text, View, StyleSheet, Image, ScrollView} from 'react-native'
 
 // LogOutComponents
 // import LogOut from '~/Components/LogOut'
 
-function MainScreen({navigation}) {
+export default function MainScreen({navigation}) {
   // for link data -->
   const [name, setName] = useState('')
-  const [reputation, setReputation] = useState(0)
   const [profile, setProfile] = useState({})
-  const [postCount, setPostCount] = useState(0)
-  const [followingCount, setFollowingCount] = useState(0)
-  const [followerCount, setFollowerCount] = useState(0)
   // 계정정보
   const fetchAccount = (username: string) => {
     const data = {
@@ -49,170 +28,152 @@ function MainScreen({navigation}) {
       .then(res => res.json())
       .then(res => res.result[0])
   }
-  // 팔로우정보
-  const fetchFollowCount = (username: string) => {
-    const data = {
-      id: 4,
-      jsonrpc: '2.0',
-      method: 'call',
-      params: ['follow_api', 'get_follow_count', [username]],
-    }
-    return fetch('https://api.steemit.com', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    })
-      .then(res => res.json())
-      .then(res => res.result)
-  }
   // 연결
   const componentWillMount = () => {
     const username = 'anpigon'
 
-    fetchAccount(username).then(
-      ({name, post_count, reputation, json_metadata}) => {
-        const {profile} = JSON.parse(json_metadata)
-        const log =
-          Math.log(parseInt(reputation.substring(0, 4))) / Math.log(10)
-        useState({
-          name,
-          reputation:
-            Math.max(reputation.length - 1 + (log - parseInt(log)) - 9, 0) * 9 +
-            25,
-          postCount: post_count,
-          profile,
-        })
-      },
-    )
-    fetchFollowCount(username).then(({following_count, follower_count}) => {
+    fetchAccount(username).then(({name, json_metadata}) => {
+      const {profile} = JSON.parse(json_metadata)
       useState({
-        followingCount: following_count,
-        followerCount: follower_count,
+        name,
+        profile,
       })
     })
   }
   // <--
   return (
-    <Container style={{flex: 1, backgroundColor: 'white'}}>
-      <Header>
-        <Left>
-          <Icon name="md-person-add" style={{paddingLeft: 10}} />
-        </Left>
-        <Body>
-          <Text>{name}</Text>
-        </Body>
-        <Right>
-          <Icon name="ios-add" style={{paddingRight: 10, fontSize: 32}} />
-        </Right>
-      </Header>
-      <Content>
-        <View style={{flexDirection: 'row', paddingTop: 10}}>
-          <View style={{flex: 1, alignItems: 'center'}}>
-            <Image
-              source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
-              style={{width: 75, height: 75, borderRadius: 37.5}}
-            />
-          </View>
-          <View style={{flex: 3}}>
-            {/* 가로로 post follower following 수 보여줌 */}
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-              }}>
-              <View style={{alignItems: 'center'}}>
-                <Text>{postCount}</Text>
-                <Text style={{fontSize: 10, color: 'gray'}}>posts</Text>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <Text>{followingCount}</Text>
-                <Text style={{fontSize: 10, color: 'gray'}}>follower</Text>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <Text>{followerCount}</Text>
-                <Text style={{fontSize: 10, color: 'gray'}}>following</Text>
-              </View>
-            </View>
-            {/* 얘는 가로로 버튼들 아직안정함 */}
-            <View style={{flexDirection: 'row'}}>
-              <Button
-                bordered
-                dark
-                style={{
-                  flex: 4,
-                  marginLeft: 10,
-                  justifyContent: 'center',
-                  height: 30,
-                  marginTop: 10,
-                }}>
-                <Text>ERLFLRLFLRLFLRLFLRFL</Text>
-              </Button>
-              <Button
-                bordered
-                dark
-                small
-                icon
-                style={{
-                  flex: 1,
-                  marginRight: 10,
-                  marginLeft: 5,
-                  justifyContent: 'center',
-                  height: 30,
-                  marginTop: 10,
-                }}>
-                <Icon name="settings" />
-              </Button>
-            </View>
-          </View>
-        </View>
-        {/* 가져온 정보로 계정 주인에 대한 정보 표시 */}
-        <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-          <Text style={{fontWeight: 'bold'}}>
-            {profile.name} ({reputation.toFixed(2)})
-          </Text>
+    <ScrollView>
+      {/* 가져온 정보로 계정 주인에 대한 정보 표시 */}
+      <View
+        style={{
+          flexDirection: 'row',
+          paddingHorizontal: 10,
+          paddingVertical: 10,
+        }}>
+        {/* 사용자 사진 */}
+        <Image
+          source={require('~/Assets/mdpi/login_nyang@mdpi.png')}
+          style={{width: 75, height: 75, borderRadius: 37.5}}
+        />
+        <Text style={{fontWeight: 'bold'}}>계정이름</Text>
+        {/* 정보가져오기 */}
+        {/* <Text style={{fontWeight: 'bold'}}>{profile.name}</Text>
           <Text>{profile.about}</Text>
-          <Text>{profile.website}</Text>
-        </View>
-        {/* 여기부터 좌우 스크롤 */}
-        <ScrollView horizontal={true} style={styles.list}>
-          <View style={styles.stylegridView}>
-            <TouchableHighlight underlayColor="rgba(0,0,0,0)">
-              <View>
-                <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight underlayColor="rgba(0,0,0,0)">
-              <View>
-                <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight underlayColor="rgba(0,0,0,0)">
-              <View>
-                <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
-              </View>
-            </TouchableHighlight>
+          <Text>{profile.website}</Text> */}
+        <Text style={{fontWeight: 'bold'}}> 님</Text>
+      </View>
+      {/* 여기부터 좌우 스크롤 */}
+      <ScrollView horizontal={true} style={styles.list}>
+        <View>
+          <View>
+            <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
           </View>
-        </ScrollView>
-        {/* 여기부터 드로워메뉴 */}
-        <TouchableOpacity
-          style={styles.buttonjoin}
-          activeOpacity={0.8}
-          onPress={() => navigation.openDrawer()}>
-          <Text style={styles.buttontextjoin}>
-            Drawer(메뉴나옴)왼쪽에서 드래그해도 나옴
-          </Text>
-        </TouchableOpacity>
-        {/* 로그아웃버튼 */}
-        <TouchableOpacity
-          style={styles.buttonjoin}
-          activeOpacity={0.8}
-          // 이거 있으면 에러 나려나?
-          onPress={() => LogOut()}>
-          <Text style={styles.buttontextjoin}>
-            LogOut(로그인 안되어있는 상태에서 누르면 에러남)
-          </Text>
-        </TouchableOpacity>
-      </Content>
-    </Container>
+          <View>
+            <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
+          </View>
+        </View>
+        <View>
+          <View>
+            <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
+          </View>
+          <View>
+            <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
+          </View>
+        </View>
+        <View>
+          <View>
+            <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
+          </View>
+          <View>
+            <Image source={require('~/Assets/mdpi/login_nyang@mdpi.png')} />
+          </View>
+        </View>
+      </ScrollView>
+      <View>
+        <Text>고양이 활동 내역</Text>
+      </View>
+      {/* 데이터 가져오는거 안넣어서 일단 막 때려넣음 ㅎㅎ */}
+      <ScrollView>
+        <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'powderblue'}}>
+            <Text>고양이 닉넴</Text>
+          </View>
+          <View style={{width: '40%', height: 50, backgroundColor: 'skyblue'}}>
+            <Text>식사</Text>
+          </View>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'steelblue'}}>
+            <Text>16:40</Text>
+          </View>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'powderblue'}}>
+            <Text>고양이 닉넴</Text>
+          </View>
+          <View style={{width: '40%', height: 50, backgroundColor: 'skyblue'}}>
+            <Text>식사</Text>
+          </View>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'steelblue'}}>
+            <Text>16:40</Text>
+          </View>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'powderblue'}}>
+            <Text>고양이 닉넴</Text>
+          </View>
+          <View style={{width: '40%', height: 50, backgroundColor: 'skyblue'}}>
+            <Text>식사</Text>
+          </View>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'steelblue'}}>
+            <Text>16:40</Text>
+          </View>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'powderblue'}}>
+            <Text>고양이 닉넴</Text>
+          </View>
+          <View style={{width: '40%', height: 50, backgroundColor: 'skyblue'}}>
+            <Text>식사</Text>
+          </View>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'steelblue'}}>
+            <Text>16:40</Text>
+          </View>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'powderblue'}}>
+            <Text>고양이 닉넴</Text>
+          </View>
+          <View style={{width: '40%', height: 50, backgroundColor: 'skyblue'}}>
+            <Text>식사</Text>
+          </View>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'steelblue'}}>
+            <Text>16:40</Text>
+          </View>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'powderblue'}}>
+            <Text>고양이 닉넴</Text>
+          </View>
+          <View style={{width: '40%', height: 50, backgroundColor: 'skyblue'}}>
+            <Text>식사</Text>
+          </View>
+          <View
+            style={{width: '30%', height: 50, backgroundColor: 'steelblue'}}>
+            <Text>16:40</Text>
+          </View>
+        </View>
+      </ScrollView>
+    </ScrollView>
   )
 }
 
@@ -236,35 +197,4 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#f2f2f2',
   },
-  stylegridView: {
-    // 사진 리스트
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingHorizontal: 16,
-    paddingTop: 10,
-    justifyContent: 'space-between',
-    paddingBottom: 80,
-  },
 })
-
-// add navigation
-import {createDrawerNavigator} from '@react-navigation/drawer'
-
-// Drawer navigation
-const Drawer = createDrawerNavigator()
-
-// For Drawer in main
-import SettingPage from '~/Screens/SettingPage'
-import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
-import LogOut from '~/Components/LogOut'
-
-// export
-export default () => {
-  return (
-    <Drawer.Navigator initialRouteName="MainScreen">
-      <Drawer.Screen name="MainScreen" component={MainScreen} />
-      <Drawer.Screen name="SettingPage" component={SettingPage} />
-      <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
-    </Drawer.Navigator>
-  )
-}
