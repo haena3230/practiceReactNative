@@ -18,7 +18,7 @@ import EventScreen from '~/Screens/MainScreen/EventScreen'
 import PersonalScreen from '~/Screens/MainScreen/PersonalScreen'
 
 //style
-import {Button, Image, Alert} from 'react-native'
+import {Image} from 'react-native'
 
 // stack navigation
 const Stack = createStackNavigator()
@@ -58,7 +58,7 @@ function MainNavigator() {
       <BottomTab.Screen
         options={{
           tabBarIcon: () => (
-            <Image source={require('~/Assets/mdpi/main_buttonmdpi.png')} />
+            <Image source={require('~/Assets/mdpi/main_button@mdpi.png')} />
           ),
         }}
         name="MainScreen"
@@ -67,7 +67,7 @@ function MainNavigator() {
       <BottomTab.Screen
         options={{
           tabBarIcon: () => (
-            <Image source={require('~/Assets/mdpi/search_buttonmdpi.png')} />
+            <Image source={require('~/Assets/mdpi/search_button@mdpi.png')} />
           ),
         }}
         name="SearchScreen"
@@ -76,7 +76,7 @@ function MainNavigator() {
       <BottomTab.Screen
         options={{
           tabBarIcon: () => (
-            <Image source={require('~/Assets/mdpi/dairy_buttonmdpi.png')} />
+            <Image source={require('~/Assets/mdpi/dairy_button@mdpi.png')} />
           ),
         }}
         name="RecordScreen"
@@ -85,7 +85,7 @@ function MainNavigator() {
       <BottomTab.Screen
         options={{
           tabBarIcon: () => (
-            <Image source={require('~/Assets/mdpi/event_buttonmdpi.png')} />
+            <Image source={require('~/Assets/mdpi/event_button@mdpi.png')} />
           ),
         }}
         name="EventScreen"
@@ -94,7 +94,7 @@ function MainNavigator() {
       <BottomTab.Screen
         options={{
           tabBarIcon: () => (
-            <Image source={require('~/Assets/mdpi/personal_buttonmdpi.png')} />
+            <Image source={require('~/Assets/mdpi/personal_button@mdpi.png')} />
           ),
         }}
         name="PersonalScreen"
@@ -104,49 +104,49 @@ function MainNavigator() {
   )
 }
 
-export default () => {
+// export default () => {
+//   return (
+//     <NavigationContainer>
+//       <LoginNavigator />
+//     </NavigationContainer>
+//   );
+// };
+
+// // 로그인
+import auth from '@react-native-firebase/auth'
+
+function FirstNavigator() {
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true)
+  const [user, setUser] = useState()
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user)
+    if (initializing) setInitializing(false)
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
+    return subscriber // unsubscribe on unmount
+  }, [])
+
+  if (initializing) return null
+
+  if (!user) {
+    return (
+      <NavigationContainer>
+        <LoginNavigator />
+      </NavigationContainer>
+    )
+  }
+
   return (
     <NavigationContainer>
-      <LoginNavigator />
+      <MainNavigator />
     </NavigationContainer>
   )
 }
 
-// // // 로그인
-// import auth from '@react-native-firebase/auth'
-
-// function FirstNavigator() {
-//   // Set an initializing state whilst Firebase connects
-//   const [initializing, setInitializing] = useState(true)
-//   const [user, setUser] = useState()
-
-//   // Handle user state changes
-//   function onAuthStateChanged(user) {
-//     setUser(user)
-//     if (initializing) setInitializing(false)
-//   }
-
-//   useEffect(() => {
-//     const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
-//     return subscriber // unsubscribe on unmount
-//   }, [])
-
-//   if (initializing) return null
-
-//   if (!user) {
-//     return (
-//       <NavigationContainer>
-//         <LoginNavigator />
-//       </NavigationContainer>
-//     )
-//   }
-
-//   return (
-//     <NavigationContainer>
-//       <MainNavigator />
-//     </NavigationContainer>
-//   )
-// }
-
-// // 내보내기
-// export default FirstNavigator
+// 내보내기
+export default FirstNavigator

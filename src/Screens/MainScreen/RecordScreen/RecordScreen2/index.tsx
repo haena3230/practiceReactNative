@@ -1,7 +1,6 @@
 import React from 'react'
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 // import AddPhoto from '~/Components/AddPhoto'; //이거 ADDPHOTO 기능 복사해온거라 손봐야할듯
-import CatButton from '~/Components/CatButton' //이거는 피커로 만든건디 데이터를 어찌가지고올지 생각해봐야할듯
 import SaveButton from '~/Components/SaveButton' //이건 저장기능 추가하는거 알아볼게...
 
 export default function RecordScreen2({navigation}) {
@@ -12,7 +11,6 @@ export default function RecordScreen2({navigation}) {
       <Text>기록하기</Text>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
       <View style={styles.CatButton} />
-      <CatButton />
 
       <TextInput
         style={{flex: 1, borderColor: 'gray', borderWidth: 1}} //이거 flex1로 해놔서 아래 스타일에서 크기 조절하면 되는건가?

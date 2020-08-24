@@ -1,6 +1,6 @@
 // SettingPage
-import React from 'react'
-import {Text, View, Button} from 'react-native'
+import React from 'react';
+import {Text, View, Button} from 'react-native';
 
 function SettingPage({navigation}) {
   return (
@@ -8,7 +8,7 @@ function SettingPage({navigation}) {
       <Text>test1</Text>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
     </View>
-  )
+  );
 }
 
-export default SettingPage
+export default SettingPage;

@@ -254,8 +254,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer'
 const Drawer = createDrawerNavigator()
 
 // For Drawer in main
-import SettingPage from '~/Screens/MainScreen/SettingPage'
-import ProfileScreen from '~/Screens/MainScreen/SettingPage/ProfileScreen'
+import SettingPage from '~/Screens/SettingPage'
+import ProfileScreen from '~/Screens/SettingPage/ProfileScreen'
 import LogOut from '~/Components/LogOut'
 
 // export

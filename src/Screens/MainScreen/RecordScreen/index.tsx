@@ -1,6 +1,6 @@
 // RecordScreen
-import React from 'react'
-import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
+import React from 'react';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 
 function RecordScreen({navigation}) {
   return (
@@ -10,7 +10,7 @@ function RecordScreen({navigation}) {
         onPress={() => navigation.navigate('RecordScreen2')}>
         <Image
           style={styles.menuimage}
-          source={require('~/Assets/mdpi/feed_buttonmdpi.png')}
+          source={require('~/Assets/mdpi/feed_button@mdpi.png')}
         />
         <Text style={styles.text}>밥 시간 기록하기</Text>
       </TouchableOpacity>
@@ -19,7 +19,7 @@ function RecordScreen({navigation}) {
         onPress={() => navigation.navigate('RecordScreen2')}>
         <Image
           style={styles.menuimage}
-          source={require('~/Assets/mdpi/medical_buttonmdpi.png')}
+          source={require('~/Assets/mdpi/medical_button@mdpi.png')}
         />
         <Text style={styles.text}>병원 기록하기</Text>
       </TouchableOpacity>
@@ -28,27 +28,31 @@ function RecordScreen({navigation}) {
         onPress={() => navigation.navigate('RecordScreen3')}>
         <Image
           style={styles.menuimage}
-          source={require('~/Assets/mdpi/camera_buttonmdpi.png')}
+          source={require('~/Assets/mdpi/camera_button@mdpi.png')}
         />
         <Text style={styles.text}>사진 올리기</Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#F9D7D7',
+    paddingHorizontal: 8,
+    paddingTop: 8,
   },
   button: {
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.3,
-    borderColor: '#b1b2b2',
+    borderWidth: 2,
+    borderColor: '#F9D7D7',
+    marginBottom: 8,
+    borderRadius: 10,
   },
   menuimage: {
     resizeMode: 'contain',
@@ -57,14 +61,14 @@ const styles = StyleSheet.create({
     margin: 10,
     color: 'black',
   },
-})
+});
 
 //Record Navigator
-import RecordScreen2 from '~/Screens/MainScreen/RecordScreen/RecordScreen2'
-import RecordScreen3 from '~/Screens/MainScreen/RecordScreen/RecordScreen3'
+import RecordScreen2 from '~/Screens/MainScreen/RecordScreen/RecordScreen2';
+import RecordScreen3 from '~/Screens/MainScreen/RecordScreen/RecordScreen3';
 
-import {createStackNavigator} from '@react-navigation/stack'
-const Stack = createStackNavigator()
+import {createStackNavigator} from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
 function Record6Navigator() {
   return (
@@ -72,7 +76,7 @@ function Record6Navigator() {
       <Stack.Screen name="RecordScreen2" component={RecordScreen2} />
       <Stack.Screen name="RecordScreen3" component={RecordScreen3} />
     </Stack.Navigator>
-  )
+  );
 }
 // 내보내기
 export default () => {
@@ -81,5 +85,5 @@ export default () => {
       <Stack.Screen name="RecordScreen" component={RecordScreen} />
       <Stack.Screen name="Record6Navigator" component={Record6Navigator} />
     </Stack.Navigator>
-  )
-}
+  );
+};

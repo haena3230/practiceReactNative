@@ -21,7 +21,6 @@ function SignUpScreen({navigation}) {
   const [fetching, setFetching] = useState(false)
   const [error, setError] = useState('')
   const [isValid, setValid] = useState(true)
-  //FB
   const __doSignUp = () => {
     if (!email) {
       setError('Email required *')
@@ -55,7 +54,7 @@ function SignUpScreen({navigation}) {
       <View style={styles.view}>
         <Image
           style={styles.image}
-          source={require('~/Assets/mdpi/email_textmdpi.png')}
+          source={require('~/Assets/mdpi/email_text@mdpi.png')}
         />
         <Reinput
           style={styles.textInput}
@@ -73,7 +72,7 @@ function SignUpScreen({navigation}) {
       <View style={styles.view}>
         <Image
           style={styles.image}
-          source={require('~/Assets/mdpi/pw_textmdpi.png')}
+          source={require('~/Assets/mdpi/pw_text@mdpi.png')}
         />
         <Reinput
           style={styles.textInput}
@@ -91,7 +90,7 @@ function SignUpScreen({navigation}) {
       <View style={styles.view}>
         <Image
           style={styles.image}
-          source={require('~/Assets/mdpi/pwcheck_textmdpi.png')}
+          source={require('~/Assets/mdpi/pwcheck_text@mdpi.png')}
         />
         <Reinput
           style={styles.textInput}
@@ -105,7 +104,7 @@ function SignUpScreen({navigation}) {
       <View style={styles.view}>
         <Image
           style={styles.image}
-          source={require('~/Assets/mdpi/username_textmdpi.png')}
+          source={require('~/Assets/mdpi/username_text@mdpi.png')}
         />
         <Reinput
           style={styles.textInput}
@@ -125,8 +124,8 @@ function SignUpScreen({navigation}) {
           style={styles.button}
           activeOpacity={0.8}
           //FB
-          // onPress={() => __doSignUp()}>
-          onPress={() => navigation.navigate('SignUpScreen')}>
+          onPress={() => __doSignUp()}>
+          {/* // onPress={() => navigation.navigate('SignUpScreen')}> */}
           <Text style={styles.buttontext}>가입하기</Text>
         </TouchableOpacity>
         <TouchableOpacity

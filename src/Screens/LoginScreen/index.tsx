@@ -1,7 +1,7 @@
-// Login.tsx
+// Login 화면
 import React from 'react'
 import Reinput from 'reinput'
-//reinput 모듈 다운
+
 import {
   ScrollView,
   StyleSheet,
@@ -10,9 +10,43 @@ import {
   View,
   Image,
 } from 'react-native'
-import Login from '~/Components/Login'
 
+// Login 관련 모듈
+import auth from '@react-native-firebase/auth'
+import {useState} from 'react'
+import {Alert} from 'react-native'
+
+// 로그인 화면 작성
 function LoginScreen({navigation}) {
+  // 동적값
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isValid, setValid] = useState(true)
+
+  const __Login = () => {
+    if (!email) {
+      setError('Email required *')
+      setValid(false)
+      return
+    } else if (!password && password.trim() && password.length > 6) {
+      setError('Weak password, minimum 5 chars')
+      setValid(false)
+      return
+    }
+    __doLogin(email, password)
+  }
+  const __doLogin = async (email: string, password: string) => {
+    try {
+      let response = await auth().signInWithEmailAndPassword(email, password)
+      if (response && response.user) {
+        Alert.alert('Success ✅', '성공적으로 로그인')
+      }
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -26,6 +60,11 @@ function LoginScreen({navigation}) {
             labelActiveColor="#999999"
             underlineActiveColor="#999999"
             label="Email"
+            //FB
+            onChangeText={(text: React.SetStateAction<string>) => {
+              setError
+              setEmail(text)
+            }}
           />
           <Reinput
             style={styles.inputemail}
@@ -34,13 +73,17 @@ function LoginScreen({navigation}) {
             labelActiveColor="#999999"
             underlineActiveColor="#999999"
             label="Password"
+            //FB
+            onChangeText={(text: React.SetStateAction<string>) =>
+              setPassword(text)
+            }
           />
           <TouchableOpacity
             style={styles.button}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate('MainNavigator')}>
-            {/* FB */}
-            {/* onPress={() => Login()}> */}
+            // onPress={() => navigation.navigate('MainNavigator')}>
+            //FB
+            onPress={() => __Login()}>
             <Text style={styles.buttontext}>로그인</Text>
           </TouchableOpacity>
           <TouchableOpacity
