@@ -15,6 +15,6 @@ react-native run-android
 
 ### 자세히 
 
-https://www.notion.so/haena3230/Gombang-Project-491a16432d7e4a7595d9ca728db9b5ac
+https://www.notion.so/haena3230/SWnyang-Project-324b27ebabdd40d9b4930040bc940547
 
 
