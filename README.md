@@ -1,23 +1,19 @@
-## React Native 기반 안드로이드 앱 프론트 엔드 개발 
+### React Native 기반 Android Client 개발
 
 ### 소개
 
-길고양이로 인한 도시 위생문제, 길고양이를 보살피는 지지자와 반대자들의 대립, 그로 인해 발생하는 혐오 범죄에 대한 해결책을 위해 프로젝트를 기획했다.
+길고양이로 인한 도시 위생문제, 길고양이를 보살피는 지지자와 반대자들의 대립, 그로 인해 발생하는 혐오 범죄에 대한 해결책을 위한 프로젝트
 
-### 목표
+### Quick Start
+'''
+git clone https://github.com/haena3230/practiceReactNative.git
+cd practiceReactNative
+yarn 
+react-native run-android
+'''
 
-* 길고양이 케어에 체계적인 시스템 제공
-* 정부 TNR 사업의 효율성 향상 
-* 관련 범죄 예방 및 공동 대응 제공
+### 자세히 
 
-### 제공 기능
-* 고양이 케어를 위한 기록 공간 제공
-* 커뮤니티 공간 제공 
-* 지도에 고양이 위치 기록 기능 
-
------------------------
-### 스크린 샷 
-![image](https://user-images.githubusercontent.com/57908055/102691196-0729e300-424e-11eb-84b1-41c325149583.png)
-
+https://www.notion.so/haena3230/Gombang-Project-491a16432d7e4a7595d9ca728db9b5ac
 
 
