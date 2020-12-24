@@ -6,12 +6,12 @@
 
 ### Quick Start
 
-'''
+```
 git clone https://github.com/haena3230/practiceReactNative.git
 cd practiceReactNative
 yarn 
 react-native run-android
-'''
+```
 
 ### 자세히 
 
