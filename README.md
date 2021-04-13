@@ -8,6 +8,9 @@
 - 커뮤니티 공간 제공
 - 현재 위치 기반 지도에 고양이 위치 기록
 
+### 주요 스크린샷
+![_2](https://user-images.githubusercontent.com/57908055/114489074-77b99d00-9c4d-11eb-8d77-f0da236dd9ed.png)
+
 ### Quick Start
 ```
 git clone https://github.com/haena3230/practiceReactNative.git
@@ -15,9 +18,3 @@ cd practiceReactNative
 yarn 
 react-native run-android
 ```
-
-### 자세히 
-
-https://www.notion.so/haena3230/SWnyang-Project-324b27ebabdd40d9b4930040bc940547
-
-
